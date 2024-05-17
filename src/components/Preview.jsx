@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 
-function Preview({ imageSrc, setStep, croppedImageSrc, setCroppedImageSrc ,handleRetry}) {
+function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, handleRetry }) {
 
   useEffect(() => {
     if (imageSrc) {
@@ -32,15 +31,7 @@ function Preview({ imageSrc, setStep, croppedImageSrc, setCroppedImageSrc ,handl
     }
   }, [imageSrc, setCroppedImageSrc]);
 
-  const printPhoto = async () => {
-    try {
-      const response = await axios.post('http://localhost:5500/print-latest-photo');
-      console.log('Server response:', response.data);
-      setStep(3)
-    } catch (error) {
-      console.error('Error printing photo:', error);
-    }
-  };
+  
 
   return (
     <article className='preview'>

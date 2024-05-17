@@ -1,32 +1,12 @@
-//子層
-import React, { useEffect, useCallback, useRef, useState } from 'react';
-import { storage } from '../firebase-config';
-import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import React, { useEffect, useRef, useState } from 'react';
 import templateIMG1 from '../images/1.png';
 import templateIMG2 from '../images/2.png';
 import templateIMG3 from '../images/3.png';
 import templateIMG4 from '../images/4.png';
 
-const Item = ({ mainIMG, setStorageRef }) => {
+const Item = ({ mainIMG, setPrintableImageURL }) => {
   const ref = useRef(null);
   const [templateImage, setTemplateImage] = useState('');
-
-  const uploadCanvasImage = useCallback((canvas) => {
-    canvas.toBlob(blob => {
-      const imageRef = storageRef(storage, `images/${Date.now()}.jpg`);
-      uploadBytes(imageRef, blob).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          setStorageRef(snapshot.ref); // Ensure this is being set correctly
-        }).catch(error => {
-          console.error("Error getting download URL: ", error);
-        });
-      }).catch(error => {
-        console.error("Error uploading file: ", error);
-      });
-    });
-  }, [setStorageRef]);
-  
 
   useEffect(() => {
     // Randomly choose one of the template images
@@ -56,12 +36,14 @@ const Item = ({ mainIMG, setStorageRef }) => {
       const templateImageObj = new Image();
       templateImageObj.onload = () => {
         ctx.drawImage(templateImageObj, 0, 0, width, height);
-        uploadCanvasImage(canvas);
+        // Set the data URL directly instead of uploading
+        const imageDataUrl = canvas.toDataURL('image/png');
+        setPrintableImageURL(imageDataUrl);
       };
       templateImageObj.src = templateImage;
     };
     mainImage.src = mainIMG;
-  }, [mainIMG, ref, uploadCanvasImage, templateImage]);
+  }, [mainIMG, ref, templateImage, setPrintableImageURL]);
 
   return (
     <div className='card'>
