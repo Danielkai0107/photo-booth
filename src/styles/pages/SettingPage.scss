@@ -1,0 +1,52 @@
+.setting {
+  width: 100vw;
+  height: 100vh;
+  padding: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 3rem;
+  .start_btn {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-image: url("../../images/full-size.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .logo {
+    width: 100%;
+    font-family: "Sedan SC", serif;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .input_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    label {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 200;
+      letter-spacing: 2px;
+    }
+    input {
+      display: block;
+      height: 1.5rem;
+      border: 1px solid #b0b0b0;
+      border-radius: 0.3rem;
+      padding: 0.5rem;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 200;
+      text-align: center;
+    }
+  }
+}
