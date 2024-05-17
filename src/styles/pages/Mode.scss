@@ -23,38 +23,44 @@
 }
 .welcome {
   animation: fade-in 2s forwards;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 4rem;
   cursor: pointer;
-  h2 {
-    font-size: 3.75rem;
-    font-family: "Noto Sans TC", sans-serif;
-    letter-spacing: 3.75rem;
-    font-weight: 200;
-    text-align: center;
-    animation: breath 4s infinite;
-  }
   h1 {
     font-size: 6rem;
     font-family: "Sedan SC", serif;
     letter-spacing: 1rem;
     text-align: center;
-    animation: breath 4s infinite;
+    animation: breath 5s infinite;
   }
   .slider {
+    opacity: 0.2;
     position: absolute;
     z-index: -1;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      &.active {
+        opacity: 1;
+      }
     }
   }
+
 }
 
 .camera {
@@ -159,7 +165,7 @@
       cursor: pointer;
       transition: all 0.4s;
       &:active {
-        .print{
+        .print {
           scale: 0.5;
         }
         .retry {
