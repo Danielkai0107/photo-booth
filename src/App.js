@@ -5,7 +5,7 @@ import MainMode from "./pages/MainMode";
 
 function App() {
   const [mode, setMode] = useState(2);
-  const [countdown, setCountdown] = useState(2);
+  const [countdown, setCountdown] = useState(5);
   return (
     <main>
       {mode === 1 && (

@@ -11,16 +11,13 @@
   }
 }
 .end_btn {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 200;
   width: 4rem;
   height: 4rem;
-  background-image: url("../../images/lock.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
   cursor: pointer;
   opacity: 0.5;
 }
@@ -50,7 +47,6 @@
     animation: breath 4s infinite;
   }
   .slider {
-    border: 1px solid red;
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -161,6 +157,15 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      transition: all 0.4s;
+      &:active {
+        .print{
+          scale: 0.5;
+        }
+        .retry {
+          scale: 0.5;
+        }
+      }
       span {
         width: 6rem;
         height: 6rem;
@@ -170,7 +175,6 @@
       }
       .print {
         background-image: url("../../images/print.png");
-        animation: shake 1s infinite;
       }
       .retry {
         background-image: url("../../images/retry.png");
