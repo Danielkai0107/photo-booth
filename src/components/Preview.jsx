@@ -48,7 +48,6 @@ function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, ha
         </li>
         <li className='preview_mask--3' onClick={printPhoto}>
           <span className='print'></span>
-          {IP}
         </li>
       </ul>
     </article>
