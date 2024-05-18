@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React from 'react';
-import testPhoto from '../images/1.png'
+import testPhoto from '../images/1.png';
 
 function SettingPage({ setMode, setCountdown, countdown, setIP, IP }) {
-
   const sendTestPhoto = async () => {
-
     const response = await fetch(testPhoto);
-    const blob = await response.blob(); // 将图片转换为blob
+    const blob = await response.blob(); // Convert the image to a blob
 
     const formData = new FormData();
     formData.append('photo', blob, 'test-photo.png');
@@ -36,9 +34,10 @@ function SettingPage({ setMode, setCountdown, countdown, setIP, IP }) {
         <input type="text" value={IP} onChange={e => setIP(e.target.value)} />
       </section>
       <section className='input_group'>
-        <span onClick={sendTestPhoto}>列印測試</span>
+        <span className='test' onClick={sendTestPhoto}>列印測試</span>
         <a href={`https://${IP}:5500`}>後端安全性測試</a>
       </section>
+      <p className='version'>Version <span> 24-0519-01 </span> ®InkMemory</p>
       <span className='start_btn' onClick={() => { setMode(2) }}></span>
     </article>
   );

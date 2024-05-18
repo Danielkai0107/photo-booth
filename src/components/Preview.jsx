@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
-function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, handleRetry,IP}) {
+function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, handleRetry }) {
+  const dpi = 300; // Desired DPI for better printing quality
 
   useEffect(() => {
     if (imageSrc) {
@@ -20,18 +21,22 @@ function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, ha
           height = width / targetAspectRatio;
         }
 
-        canvas.width = width;
-        canvas.height = height;
+        // Scaling factors to adjust canvas size based on DPI
+        const scaleFactor = dpi / 96;
+        canvas.width = width * scaleFactor; // Scale width for high DPI
+        canvas.height = height * scaleFactor; // Scale height for high DPI
+        canvas.style.width = `${width}px`; // Maintain visual width
+        canvas.style.height = `${height}px`; // Maintain visual height
+
         const xOffset = (image.width - width) / 2;
         const yOffset = (image.height - height) / 2;
 
-        ctx.drawImage(image, xOffset, yOffset, width, height, 0, 0, width, height);
+        // Scale drawing operations by scaleFactor
+        ctx.drawImage(image, xOffset, yOffset, width, height, 0, 0, canvas.width, canvas.height);
         setCroppedImageSrc(canvas.toDataURL('image/png'));
       };
     }
-  }, [imageSrc, setCroppedImageSrc]);
-
-  
+  }, [imageSrc, setCroppedImageSrc, dpi]);
 
   return (
     <article className='preview'>

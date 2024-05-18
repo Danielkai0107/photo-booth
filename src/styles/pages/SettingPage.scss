@@ -48,7 +48,7 @@
       font-weight: 200;
       text-align: center;
     }
-    span {
+    .test {
       display: block;
       padding: 1rem;
       border: 1px solid #b0b0b0;
@@ -70,6 +70,19 @@
       &:active {
         scale: 0.5;
       }
+    }
+  }
+  .version {
+    position: absolute;
+    bottom: 2rem;
+    padding: 1rem;
+    font-size: .8rem;
+    color: #b0b0b0;
+    border-radius: 1rem;
+    letter-spacing: 2px;
+    span {
+      color: #b0b0b0;
+      font-size: .8rem;
     }
   }
 }
