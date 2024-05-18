@@ -13,7 +13,7 @@ const Welcome = ({ setStep }) => {
       setCurrentSlide((prevSlide) =>
         prevSlide === slides.length - 1 ? 0 : prevSlide + 1
       );
-    }, 5000); // Change image every 3000 milliseconds (3 seconds)
+    }, 3000); // Change image every 3000 milliseconds (3 seconds)
 
     return () => clearInterval(intervalId);
   }, [slides.length]);
