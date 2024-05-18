@@ -7,16 +7,34 @@ import templateIMG4 from '../images/4.png';
 const Item = ({ mainIMG, setPrintableImageURL }) => {
   const ref = useRef(null);
   const [templateImage, setTemplateImage] = useState('');
+  const [imagesLoaded, setImagesLoaded] = useState({
+    img1: false,
+    img2: false,
+    img3: false,
+    img4: false
+  });
 
   useEffect(() => {
+    const imageLoaders = [
+      { src: templateIMG1, key: 'img1' },
+      { src: templateIMG2, key: 'img2' },
+      { src: templateIMG3, key: 'img3' },
+      { src: templateIMG4, key: 'img4' }
+    ];
+
+    imageLoaders.forEach((img) => {
+      const image = new Image();
+      image.onload = () => setImagesLoaded(prev => ({ ...prev, [img.key]: true }));
+      image.src = img.src;
+    });
+
     // Randomly choose one of the template images
-    const templates = [templateIMG1, templateIMG2, templateIMG3, templateIMG4];
-    const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+    const randomTemplate = imageLoaders[Math.floor(Math.random() * imageLoaders.length)].src;
     setTemplateImage(randomTemplate);
   }, []);
 
   useEffect(() => {
-    if (!templateImage || !ref.current) return;
+    if (!templateImage || !ref.current || !Object.values(imagesLoaded).every(Boolean)) return;
 
     const canvas = ref.current;
     const ctx = canvas.getContext('2d');
@@ -43,7 +61,12 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
       templateImageObj.src = templateImage;
     };
     mainImage.src = mainIMG;
-  }, [mainIMG, ref, templateImage, setPrintableImageURL]);
+  }, [mainIMG, ref, templateImage, setPrintableImageURL, imagesLoaded]);
+
+  // Render the component only when all images are loaded
+  if (!Object.values(imagesLoaded).every(Boolean)) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='card'>
