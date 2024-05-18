@@ -15,6 +15,7 @@ function App() {
           countdown={countdown}
           setCountdown={setCountdown}
           setIP={setIP}
+          IP={IP}
         />
       )}
       {mode === 2 && <MainMode setMode={setMode} countdown={countdown} IP={IP} />}
