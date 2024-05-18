@@ -51,7 +51,7 @@ const MainMode = ({ setMode, countdown ,IP}) => {
     formData.append('photo', blob, 'upload.png');
   
     try {
-      const response = await axios.post(`http://${IP}:5000/upload-and-print`, formData, {
+      const response = await axios.post(`http://${IP}:5500/upload-and-print`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
