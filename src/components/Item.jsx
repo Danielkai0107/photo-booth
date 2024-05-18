@@ -65,7 +65,7 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
 
   // Render the component only when all images are loaded
   if (!Object.values(imagesLoaded).every(Boolean)) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
