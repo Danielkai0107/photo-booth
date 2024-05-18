@@ -6,13 +6,15 @@ function Camera({ onCapture, setStep, count, resetStates }) {
   const [countdown, setCountdown] = useState(null);
   const [cameraStep, setCameraStep] = useState(1);
 
+
   useEffect(() => {
-    resetStates(); 
+    resetStates();
     const getVideo = () => {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
           videoRef.current.srcObject = stream;
           videoRef.current.stream = stream; // Store stream reference for cleanup
+
         })
         .catch(error => {
           console.error("Error accessing the camera: ", error);

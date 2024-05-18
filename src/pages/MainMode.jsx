@@ -8,7 +8,7 @@ import Item from '../components/Item'
 import { deleteObject } from 'firebase/storage'
 import axios from 'axios'
 
-const MainMode = ({ setMode, countdown ,IP}) => {
+const MainMode = ({ setMode, countdown, IP }) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImageSrc, setCroppedImageSrc] = useState(null);
   const [step, setStep] = useState(0);
@@ -49,7 +49,7 @@ const MainMode = ({ setMode, countdown ,IP}) => {
     const blob = await fetch(printableImageURL, { mode: 'no-cors' }).then(res => res.blob());
     const formData = new FormData();
     formData.append('photo', blob, 'upload.png');
-  
+
     try {
       const response = await axios.post(`https://192.168.1.109:5500/upload-and-print`, formData, {
         headers: {
@@ -63,10 +63,17 @@ const MainMode = ({ setMode, countdown ,IP}) => {
       console.error('Error printing photo:', error);
     }
   };
-  
+
 
   return (
     <article className='mode_container'>
+      <figure className="loading">
+        <ul class="dots">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </figure>
       <figure className='end_btn' onClick={() => { setMode(1) }}>
       </figure>
       <section className="mode">
