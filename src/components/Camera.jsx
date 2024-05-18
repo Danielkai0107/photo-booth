@@ -1,7 +1,6 @@
-//子層
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-function Camera({ onCapture, setStep, count,resetStates }) {
+function Camera({ onCapture, setStep, count, resetStates }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [countdown, setCountdown] = useState(null);
@@ -23,10 +22,12 @@ function Camera({ onCapture, setStep, count,resetStates }) {
 
     getVideo();
 
+    // Capture the current value of videoRef to use in the cleanup function
+    const currentVideoRef = videoRef.current;
+
     return () => {
-      
-      if (videoRef.current && videoRef.current.stream) {
-        videoRef.current.stream.getTracks().forEach(track => track.stop());
+      if (currentVideoRef && currentVideoRef.stream) {
+        currentVideoRef.stream.getTracks().forEach(track => track.stop());
       }
     };
   }, [resetStates]);

@@ -49,9 +49,9 @@ const MainMode = ({ setMode, countdown }) => {
     const blob = await fetch(printableImageURL, { mode: 'no-cors' }).then(res => res.blob());
     const formData = new FormData();
     formData.append('photo', blob, 'upload.png');
-
+  
     try {
-      const response = await axios.post('http://localhost:5500/upload-and-print', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload-and-print`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -62,6 +62,7 @@ const MainMode = ({ setMode, countdown }) => {
       console.error('Error printing photo:', error);
     }
   };
+  
 
   return (
     <article className='mode_container'>
