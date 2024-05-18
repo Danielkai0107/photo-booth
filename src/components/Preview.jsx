@@ -9,7 +9,6 @@ function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, ha
       image.onload = () => {
         // 提高解析度的倍數
         const scaleFactor = 2; // 這裡設置為2，意味著解析度為原來的2倍
-
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const targetAspectRatio = 8 / 9;

@@ -66,7 +66,7 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
   }, [mainIMG, ref, templateImage, setPrintableImageURL, imagesLoaded]);
 
   if (!Object.values(imagesLoaded).every(Boolean)) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
