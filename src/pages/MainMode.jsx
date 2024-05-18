@@ -51,12 +51,13 @@ const MainMode = ({ setMode, countdown ,IP}) => {
     formData.append('photo', blob, 'upload.png');
   
     try {
-      const response = await axios.post(`http://${IP}:5500/upload-and-print`, formData, {
+      const response = await axios.post(`https://192.168.1.109:5500/upload-and-print`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
       console.log('Server response:', response.data);
+      console.log(`${IP}`);
       setStep(3);
     } catch (error) {
       console.error('Error printing photo:', error);
@@ -88,6 +89,7 @@ const MainMode = ({ setMode, countdown ,IP}) => {
             setCroppedImageSrc={setCroppedImageSrc}
             handleRetry={handleRetry}
             printPhoto={printPhoto}
+            IP={IP}
           />}
         {step === 2 &&
           <Item

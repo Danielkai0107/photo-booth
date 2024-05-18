@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, handleRetry }) {
+function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, handleRetry,IP}) {
 
   useEffect(() => {
     if (imageSrc) {
@@ -48,6 +48,7 @@ function Preview({ imageSrc, printPhoto, croppedImageSrc, setCroppedImageSrc, ha
         </li>
         <li className='preview_mask--3' onClick={printPhoto}>
           <span className='print'></span>
+          {IP}
         </li>
       </ul>
     </article>

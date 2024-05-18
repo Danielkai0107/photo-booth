@@ -6,7 +6,7 @@ import MainMode from "./pages/MainMode";
 function App() {
   const [mode, setMode] = useState(2);
   const [countdown, setCountdown] = useState(5);
-  const [IP, setIP] = useState('');
+  const [IP, setIP] = useState('192.168.1.109');
   return (
     <main>
       {mode === 1 && (

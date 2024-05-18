@@ -39,14 +39,37 @@
     }
     input {
       display: block;
-      height: 1.5rem;
+      height: 1.8rem;
       border: 1px solid #b0b0b0;
-      border-radius: 0.3rem;
+      border-radius: 1rem;
       padding: 0.5rem;
       font-family: "Noto Sans TC", sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 200;
       text-align: center;
+    }
+    span {
+      display: block;
+      padding: 1rem;
+      border: 1px solid #b0b0b0;
+      color: #b0b0b0;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      &:active {
+        scale: 0.5;
+      }
+    }
+    a {
+      display: block;
+      padding: 1rem;
+      border: 1px solid #b0b0b0;
+      color: #b0b0b0;
+      border-radius: 1rem;
+      transition: all 0.2s;
+      &:active {
+        scale: 0.5;
+      }
     }
   }
 }
