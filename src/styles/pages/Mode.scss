@@ -13,70 +13,7 @@
     align-items: center;
   }
 }
-.loading {
-  opacity: 0.5;
-  animation: fade-in 8s forwards;
-  position: absolute;
-  z-index: -1;
-  width: 4rem;
-  height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(-40%);
-  .dots {
-    li {
-      position: absolute;
-      width: 1.2rem;
-      height: 1.2rem;
-      border-radius: 50%;
-      &:nth-child(1) {
-        background: #d0a884;
-        animation: load02 2s linear infinite;
-        animation-delay: 1s;
-      }
-      &:nth-child(2) {
-        background: #ceae95;
-        animation: load02 2s linear infinite;
-        animation-delay: 0s;
-      }
-      &:nth-child(3) {
-        background: #d0a884;
-        animation: load01 2s linear infinite;
-        animation-delay: 1s;
-      }
-    }
-  }
-  @keyframes load01 {
-    0% {
-      opacity: 1;
-      transform: translate(0 0);
-    }
-    49.99% {
-      opacity: 1;
-      transform: translate(2rem, 0);
-    }
-    50% {
-      opacity: 0;
-      transform: translate(2rem, 0);
-    }
-    100% {
-      opacity: 0;
-      transform: translate(0, 0);
-    }
-  }
-  @keyframes load02 {
-    0% {
-      transform: translate(0, 0);
-    }
-    50% {
-      transform: translate(2rem, 0);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-}
+
 .end_btn {
   display: block;
   position: absolute;

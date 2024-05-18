@@ -67,13 +67,6 @@ const MainMode = ({ setMode, countdown, IP }) => {
 
   return (
     <article className='mode_container'>
-      <figure className="loading">
-        <ul class="dots">
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </figure>
       <figure className='end_btn' onClick={() => { setMode(1) }}>
       </figure>
       <section className="mode">
