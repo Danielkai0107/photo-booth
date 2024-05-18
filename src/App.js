@@ -6,6 +6,7 @@ import MainMode from "./pages/MainMode";
 function App() {
   const [mode, setMode] = useState(2);
   const [countdown, setCountdown] = useState(5);
+  const [IP, setIP] = useState('');
   return (
     <main>
       {mode === 1 && (
@@ -13,9 +14,10 @@ function App() {
           setMode={setMode}
           countdown={countdown}
           setCountdown={setCountdown}
+          setIP={setIP}
         />
       )}
-      {mode === 2 && <MainMode setMode={setMode} countdown={countdown} />}
+      {mode === 2 && <MainMode setMode={setMode} countdown={countdown} IP={IP} />}
     </main>
   );
 }

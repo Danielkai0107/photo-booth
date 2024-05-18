@@ -8,7 +8,7 @@ import Item from '../components/Item'
 import { deleteObject } from 'firebase/storage'
 import axios from 'axios'
 
-const MainMode = ({ setMode, countdown }) => {
+const MainMode = ({ setMode, countdown ,IP}) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [croppedImageSrc, setCroppedImageSrc] = useState(null);
   const [step, setStep] = useState(0);
@@ -51,7 +51,7 @@ const MainMode = ({ setMode, countdown }) => {
     formData.append('photo', blob, 'upload.png');
   
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/upload-and-print`, formData, {
+      const response = await axios.post(`http://${IP}:5000/upload-and-print`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
