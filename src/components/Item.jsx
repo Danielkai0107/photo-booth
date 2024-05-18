@@ -14,9 +14,6 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
     img4: false
   });
 
-  // Define the desired DPI for printing
-  const dpi = 300;
-
   useEffect(() => {
     const imageLoaders = [
       { src: templateIMG1, key: 'img1' },
@@ -41,14 +38,10 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
 
     const canvas = ref.current;
     const ctx = canvas.getContext('2d');
-
-    const scaleFactor = dpi / 96; // Default browser DPI is 96
-    const unitWidth = 10 * scaleFactor; // Adjust unit width based on the scale factor
+    const unitWidth = 10;
     const width = 54 * unitWidth;
     const height = 86 * unitWidth;
-    canvas.style.width = `${width / scaleFactor}px`; // Maintain visual size
-    canvas.style.height = `${height / scaleFactor}px`;
-    canvas.width = width; // Set actual size of the canvas element
+    canvas.width = width;
     canvas.height = height;
 
     const mainImage = new Image();
@@ -61,21 +54,23 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
       const templateImageObj = new Image();
       templateImageObj.onload = () => {
         ctx.drawImage(templateImageObj, 0, 0, width, height);
+        // Set the data URL directly instead of uploading
         const imageDataUrl = canvas.toDataURL('image/png');
         setPrintableImageURL(imageDataUrl);
       };
       templateImageObj.src = templateImage;
     };
     mainImage.src = mainIMG;
-  }, [mainIMG, ref, templateImage, setPrintableImageURL, imagesLoaded, dpi]);
+  }, [mainIMG, ref, templateImage, setPrintableImageURL, imagesLoaded]);
 
+  // Render the component only when all images are loaded
   if (!Object.values(imagesLoaded).every(Boolean)) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
     <div className='card'>
-      <canvas ref={ref} style={{ width: '100%', height: 'auto' }}></canvas>
+      <canvas ref={ref}></canvas>
     </div>
   );
 };
