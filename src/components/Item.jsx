@@ -28,7 +28,6 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
       image.src = img.src;
     });
 
-    // Randomly choose one of the template images
     const randomTemplate = imageLoaders[Math.floor(Math.random() * imageLoaders.length)].src;
     setTemplateImage(randomTemplate);
   }, []);
@@ -38,23 +37,26 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
 
     const canvas = ref.current;
     const ctx = canvas.getContext('2d');
-    const unitWidth = 10;
-    const width = 54 * unitWidth;
-    const height = 86 * unitWidth;
-    canvas.width = width;
-    canvas.height = height;
+    
+    // Set higher resolution for printing quality
+    const scaleFactor = 3;  // Adjust this factor based on your print quality needs
+    const displayWidth = 360;  // Display width in pixels
+    const displayHeight = 576;  // Display height in pixels
+    canvas.width = displayWidth * scaleFactor;
+    canvas.height = displayHeight * scaleFactor;
+    canvas.style.width = `${displayWidth}px`;  // Set the display size
+    canvas.style.height = `${displayHeight}px`;
 
     const mainImage = new Image();
     mainImage.onload = () => {
-      const scale = Math.min(width / mainImage.width, height / mainImage.height);
-      const x = (width - mainImage.width * scale) / 2;
-      const y = (height - mainImage.height * scale) / 2;
+      const scale = Math.min(canvas.width / mainImage.width, canvas.height / mainImage.height);
+      const x = (canvas.width - mainImage.width * scale) / 2;
+      const y = (canvas.height - mainImage.height * scale) / 2;
       ctx.drawImage(mainImage, x, y, mainImage.width * scale, mainImage.height * scale);
 
       const templateImageObj = new Image();
       templateImageObj.onload = () => {
-        ctx.drawImage(templateImageObj, 0, 0, width, height);
-        // Set the data URL directly instead of uploading
+        ctx.drawImage(templateImageObj, 0, 0, canvas.width, canvas.height);
         const imageDataUrl = canvas.toDataURL('image/png');
         setPrintableImageURL(imageDataUrl);
       };
@@ -63,9 +65,8 @@ const Item = ({ mainIMG, setPrintableImageURL }) => {
     mainImage.src = mainIMG;
   }, [mainIMG, ref, templateImage, setPrintableImageURL, imagesLoaded]);
 
-  // Render the component only when all images are loaded
   if (!Object.values(imagesLoaded).every(Boolean)) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   return (
