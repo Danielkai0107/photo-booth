@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-function Camera({ onCapture, setStep, count, resetStates }) {
+function Camera({ onCapture, setStep, count, resetStates ,IP}) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [countdown, setCountdown] = useState(null);
@@ -64,6 +64,21 @@ function Camera({ onCapture, setStep, count, resetStates }) {
     setCameraStep(2);
     setCountdown(count); // Start countdown from the specified count
   };
+
+  
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     fetch(`https://${IP}/preview`)
+  //       .then(response => response.blob())
+  //       .then(blob => {
+  //         const url = URL.createObjectURL(blob);
+  //         videoRef.current.src = url;
+  //       });
+  //   }, 1000); // 每秒更新一次，根據需要調整
+  
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <article className='camera' onClick={startCountdown}>

@@ -40,6 +40,15 @@ const MainMode = ({ setMode, countdown, IP }) => {
   const handleCapture = (imageSrc) => {
     setImageSrc(imageSrc);
   };
+  // const handleCapture = useCallback(() => {
+  //   fetch(`https://${IP}:5500/capture`)
+  //     .then(response => response.blob())
+  //     .then(blob => {
+  //       const url = URL.createObjectURL(blob);
+  //       onCapture(url); // 使用圖片 URL 更新狀態或進行其他處理
+  //     })
+  //     .catch(error => console.error('Error capturing image:', error));
+  // }, [onCapture]);
 
   const printPhoto = async () => {
     if (!printableImageURL) {
@@ -51,7 +60,7 @@ const MainMode = ({ setMode, countdown, IP }) => {
     formData.append('photo', blob, 'upload.png');
 
     try {
-      const response = await axios.post(`https://192.168.1.109:5500/upload-and-print`, formData, {
+      const response = await axios.post(`https://${IP}:5500/upload-and-print`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -79,6 +88,7 @@ const MainMode = ({ setMode, countdown, IP }) => {
             count={countdown}
             setImageSrc={setImageSrc}
             resetStates={resetStates}
+            IP={IP}
           />}
         {step === 2 &&
           <Preview
